@@ -1203,3 +1203,75 @@ body {
     }
 
 }
+/* ========================================
+   Create Account Button
+   ======================================== */
+
+.login-form .register-link {
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-sizing: border-box;
+}
+
+.login-form .register-link > span {
+    color: rgba(255, 255, 255, 0.60);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.login-form .register-link > a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    height: 38px;
+    min-width: 115px;
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(216, 173, 85, 0.55);
+    border-radius: 9px;
+
+    background: rgba(216, 173, 85, 0.08);
+
+    color: #e7c878;
+
+    text-decoration: none;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.login-form .register-link > a i {
+    font-size: 12px;
+}
+
+.login-form .register-link > a:hover {
+    background: #d8ad55;
+    border-color: #d8ad55;
+
+    color: #071526;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 20px rgba(216, 173, 85, 0.22);
+}
+
+.login-form .register-link > a:active {
+    transform: translateY(0);
+}

@@ -1,0 +1,376 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>المحكمة الشرعية | إنشاء حساب</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'core/css/register.css' %}"
+    >
+</head>
+
+<body>
+
+    <div class="background">
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="grid"></div>
+
+    </div>
+
+
+    <main class="register-page">
+
+        <!-- الجانب التعريفي -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <div class="large-scale">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+
+                <span class="welcome-small">
+                    نظام المحكمة الشرعية
+                </span>
+
+                <h1>
+                    أنشئ حسابك في
+                    <strong>قضاء</strong>
+                </h1>
+
+                <p>
+                    أنشئ حسابك للوصول إلى نظام المحكمة الشرعية
+                    وإدارة أعمالك وملفاتك بسهولة وأمان.
+                </p>
+
+                <div class="welcome-line"></div>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>حساب آمن ومحمي</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>إدارة الملفات والقضايا</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>وصول سريع للنظام</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- بطاقة التسجيل -->
+        <section class="register-section">
+
+            <div class="register-card">
+
+                <!-- Logo -->
+                <div class="register-logo">
+
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+
+                    <div>
+                        <h2>قضاء</h2>
+                        <span>نظام المحكمة الشرعية</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Heading -->
+                <div class="register-heading">
+
+                    <span>حساب جديد</span>
+
+                    <h1>
+                        إنشاء حساب
+                    </h1>
+
+                    <p>
+                        أدخل بياناتك لإنشاء حساب جديد
+                    </p>
+
+                </div>
+
+
+                <!-- Form -->
+                <form
+                    method="POST"
+                    action="{% url "login" %}"
+                    id="registerForm"
+                    class="register-form"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- الاسم -->
+                    <div class="input-group">
+
+                        <label for="full_name">
+                            الاسم الكامل
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="full_name"
+                                name="full_name"
+                                placeholder="أدخل الاسم الكامل"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Username + Email -->
+                    <div class="form-row">
+
+                        <div class="input-group">
+
+                            <label for="username">
+                                اسم المستخدم
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-solid fa-at"></i>
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    placeholder="اسم المستخدم"
+                                    autocomplete="username"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="email">
+                                البريد الإلكتروني
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <i class="fa-regular fa-envelope"></i>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    placeholder="البريد الإلكتروني"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="input-group">
+
+                        <label for="password">
+                            كلمة المرور
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="أدخل كلمة المرور"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="input-group">
+
+                        <label for="confirm_password">
+                            تأكيد كلمة المرور
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="أعد كتابة كلمة المرور"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                data-target="confirm_password"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password strength -->
+                    <div class="password-strength">
+
+                        <div class="strength-bar">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <small id="strengthText">
+                            قوة كلمة المرور
+                        </small>
+
+                    </div>
+
+
+                    <!-- Terms -->
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            name="terms"
+                            required
+                        >
+
+                        <span class="custom-checkbox"></span>
+
+                        <span>
+                            أوافق على
+                            <a href="#">شروط استخدام النظام</a>
+                        </span>
+
+                    </label>
+
+
+                    <!-- Button -->
+                    <button
+                        type="submit"
+                        class="register-button"
+                        id="registerButton"
+                    >
+
+                        <span class="button-text">
+                            إنشاء الحساب
+
+                        </span>
+
+                        <span class="button-loader">
+                            <i class="fa-solid fa-circle-notch"></i>
+                        </span>
+                        
+
+                        <i class="fa-solid fa-arrow-left button-arrow"></i>
+
+                    </button>
+
+                </form>
+
+
+                <!-- Login Link -->
+                <div class="login-link">
+
+                    <span>
+                        لديك حساب بالفعل؟
+                    </span>
+
+                    <a href="{% url 'login' %}">
+                        تسجيل الدخول
+                    </a>
+
+                </div>
+
+
+                <div class="register-footer">
+
+                    © 2026 نظام المحكمة الشرعية
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{% static 'core/js/register.js' %}"></script>
+
+</body>
+
+</html>

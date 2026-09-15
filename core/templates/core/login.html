@@ -1,0 +1,281 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>المحكمة الشرعية | تسجيل الدخول</title>
+
+    <!-- Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'core/css/login.css' %}"
+    >
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div class="background">
+
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="glow glow-three"></div>
+
+        <div class="grid"></div>
+
+    </div>
+
+
+    <!-- Login Page -->
+    <main class="login-page">
+
+
+        <!-- Left Information -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+
+                <div class="large-scale">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+
+                <span class="welcome-small">
+                    نظام المحكمة الشرعية
+                </span>
+
+                <h1>
+                    أهلاً بك في
+                    <strong>قضاء</strong>
+                </h1>
+
+                <p>
+                    نظام إلكتروني متكامل لإدارة وأتمتة أعمال
+                    المحكمة الشرعية بطريقة آمنة ومنظمة.
+                </p>
+
+                <div class="welcome-line"></div>
+
+                <div class="features">
+
+                    <div class="feature">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>نظام آمن وموثوق</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>إدارة إلكترونية للقضايا</span>
+                    </div>
+
+                    <div class="feature">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>متابعة وتنظيم الأعمال</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Login Card -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+
+                <!-- Logo -->
+                <div class="login-logo">
+
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+
+                    <div>
+                        <h2>قضاء</h2>
+                        <span>نظام المحكمة الشرعية</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Heading -->
+                <div class="login-heading">
+
+                    <span>مرحباً بعودتك</span>
+
+                    <h1>
+                        تسجيل الدخول
+                    </h1>
+
+                    <p>
+                        أدخل بياناتك للوصول إلى النظام
+                    </p>
+
+                </div>
+
+
+                <!-- Form -->
+                <form
+                    method="POST"
+                    action="{% url "home" %}"
+                    class="login-form"
+                    id="loginForm"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!-- Username -->
+                    <div class="input-group">
+
+                        <label for="username">
+                            اسم المستخدم
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-regular fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="أدخل اسم المستخدم"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="input-group">
+
+                        <label for="password">
+                            كلمة المرور
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="أدخل كلمة المرور"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                                aria-label="إظهار كلمة المرور"
+                            >
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Options -->
+                    <div class="form-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+
+                            <span class="checkmark"></span>
+
+                            <span>
+                                تذكرني
+                            </span>
+
+                        </label>
+
+                        <a href="#" class="forgot">
+                            نسيت كلمة المرور؟
+                        </a>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
+
+                        <span class="button-text">
+                            تسجيل الدخول
+                        </span>
+
+                        <span class="button-loader">
+                            <i class="fa-solid fa-circle-notch"></i>
+                        </span>
+
+                        <i class="fa-solid fa-arrow-left button-arrow"></i>
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- Footer -->
+                <div class="login-footer">
+
+                    <span>
+                        © 2026 نظام المحكمة الشرعية
+                    </span>
+
+                    <span class="footer-dot"></span>
+
+                    <span>
+                        جميع الحقوق محفوظة
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{% static 'core/js/login.js' %}"></script>
+
+</body>
+
+</html>

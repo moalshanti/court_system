@@ -16,6 +16,8 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="{% static 'core/css/admin_dashboard.css' %}?v=1">
+
+    {% block extra_css %}{% endblock %}
 </head>
 
 <body>
@@ -96,7 +98,7 @@
                 <div class="nav-section">
                     <span class="nav-section-title">النظام</span>
 
-                    <a href="#" class="nav-item">
+                    <a href="{% url 'users_list' %}" class="nav-item">
                         <i class="fa-solid fa-user-shield"></i>
                         <span>المستخدمون</span>
                     </a>
@@ -243,6 +245,7 @@
 
     <!-- Admin JavaScript -->
     <script src="{% static 'core/js/admin_dashboard.js' %}?v=1"></script>
+    {% block extra_js %}{% endblock %}
 
 </body>
 </html>

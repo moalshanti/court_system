@@ -23,7 +23,7 @@ def login_view(request):
 
             login(request,user)
   
-            return redirect("home")
+            return redirect("admin_dashboard")
         else :
             messages.success(request,"erorr")
 
@@ -90,6 +90,14 @@ def register(request):
 @login_required
 def admin_dashboard(request):
     return render(request, "core/admin_dashboard.html")
+
+@login_required
+def users_list(request):
+
+
+    employees = EmployeeProfile.objects.select_related("user").all()
+
+    return render(request, "core/users.html", {"employee" : employees})
     
 
 # Create your views here.

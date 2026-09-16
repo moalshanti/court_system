@@ -1,0 +1,390 @@
+{% extends "core/admin_dashboard.html" %}
+{% load static %}
+
+{% block title %}إدارة المستخدمين | نظام المحكمة الشرعية{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'core/css/users.css' %}">
+{% endblock %}
+{% block page_title %}إدارة المستخدمين{% endblock %}
+{% block page_subtitle %}عرض وإدارة جميع حسابات النظام{% endblock %}
+
+
+{% block content %}
+
+<!-- ============================================
+     📊 STATS CARDS — إحصائيات سريعة
+============================================= -->
+<section class="stats-row">
+
+    <div class="stat-card">
+        <div class="stat-icon purple">
+            <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">إجمالي المستخدمين</span>
+            <strong class="stat-value">{{ total_users|default:"0" }}</strong>
+        </div>
+        <div class="stat-trend up">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+            <span>+12%</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">نشطون</span>
+            <strong class="stat-value">{{ active_users|default:"0" }}</strong>
+        </div>
+        <div class="stat-trend up">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>نشط</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon pink">
+            <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">المشرفون</span>
+            <strong class="stat-value">{{ admin_users|default:"0" }}</strong>
+        </div>
+        <div class="stat-trend neutral">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>صلاحيات</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fa-solid fa-user-clock"></i>
+        </div>
+        <div class="stat-info">
+            <span class="stat-label">غير نشطين</span>
+            <strong class="stat-value">{{ inactive_users|default:"0" }}</strong>
+        </div>
+        <div class="stat-trend down">
+            <i class="fa-solid fa-circle-pause"></i>
+            <span>موقوف</span>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     👥 USERS TABLE CARD
+============================================= -->
+<section class="table-card">
+
+    <!-- ✅ Header: Title + Add Button -->
+    <div class="table-header">
+
+        <div class="table-title">
+            <div class="title-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+                <h2>قائمة المستخدمين</h2>
+                <p>إدارة جميع حسابات النظام</p>
+            </div>
+        </div>
+
+        <div class="table-actions">
+            <button type="button" class="btn-add" id="addUserBtn">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>إضافة مستخدم</span>
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- ✅ Toolbar: Search + Filter -->
+    <div class="table-toolbar">
+
+        <!-- Search -->
+        <div class="toolbar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                id="userSearch"
+                placeholder="ابحث باسم المستخدم، البريد، أو الجوال..."
+                autocomplete="off"
+            >
+            <button type="button" class="search-clear" id="searchClear" aria-label="مسح البحث">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="toolbar-filters">
+
+            <div class="filter-wrapper">
+                <i class="fa-solid fa-filter"></i>
+                <select id="filterRole" class="filter-select">
+                    <option value="">كل الأدوار</option>
+                    <option value="admin">مشرف</option>
+                    <option value="judge">قاضي</option>
+                    <option value="clerk">كاتب</option>
+                    <option value="user">مستخدم</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+
+            <div class="filter-wrapper">
+                <i class="fa-solid fa-circle-dot"></i>
+                <select id="filterStatus" class="filter-select">
+                    <option value="">كل الحالات</option>
+                    <option value="active">نشط</option>
+                    <option value="inactive">غير نشط</option>
+                    <option value="pending">قيد المراجعة</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+            </div>
+
+            <button type="button" class="btn-filter-reset" id="resetFilters" title="إعادة تعيين الفلاتر">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ✅ Table -->
+    <div class="table-wrapper">
+
+        <table class="users-table" id="usersTable">
+
+            <thead>
+                <tr>
+                    <!-- Checkbox Select All -->
+                    <th class="th-check">
+                        <label class="table-checkbox">
+                            <input type="checkbox" id="selectAll">
+                            <span class="checkmark-box"></span>
+                        </label>
+                    </th>
+
+                    <!-- User -->
+                    <th class="sortable" data-sort="name">
+                        <span>المستخدم</span>
+                        <i class="fa-solid fa-sort"></i>
+                    </th>
+
+                    <!-- Email -->
+                    <th class="sortable" data-sort="email">
+                        <span>البريد الإلكتروني</span>
+                        <i class="fa-solid fa-sort"></i>
+                    </th>
+
+                    <!-- Phone -->
+                    <th>رقم الجوال</th>
+
+                    <!-- Role -->
+                    <th>الدور</th>
+
+                    <!-- Status -->
+                    <th>الحالة</th>
+
+                    <!-- Last Login -->
+                    <th class="sortable" data-sort="last_login">
+                        <span>آخر دخول</span>
+                        <i class="fa-solid fa-sort"></i>
+                    </th>
+
+                    <!-- Actions -->
+                    <th class="th-actions">الإجراءات</th>
+                </tr>
+            </thead>
+
+            <tbody id="usersTableBody">
+
+                {%for em in employee%}
+                <!-- ✅ EXAMPLE ROW 1 — احذفها لاحقاً -->
+                    <tr data-user-id="1" data-name="{{em.full_name}}" data-email="{{em.user.email}}" data-last-login="2026-09-16">
+                        <td class="th-check">
+                            <label class="table-checkbox">
+                                <input type="checkbox" class="row-check">
+                                <span class="checkmark-box"></span>
+                            </label>
+                        </td>
+
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar-sm purple">
+                                    <span>أ</span>
+                                    <span class="status-dot online"></span>
+                                </div>
+                                <div class="user-details">
+                                    <strong>{{em.full_name}}</strong>
+                                    <span>@{{em.full_name}}</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="cell-icon-text">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>{{em.user.email}}</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="cell-icon-text">
+                                <i class="fa-solid fa-phone"></i>
+                                <span dir="ltr">{{em.phone}}</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span class="badge role admin">
+                                <i class="fa-solid fa-user-shield"></i>
+                                مشرف
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge status active">
+                                <span class="dot"></span>
+                                نشط
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="cell-date">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>{{em.user.date_joined|date:"H:i"}}</span>
+                            </div>
+                        </td>
+
+                        <td class="th-actions">
+                            <div class="row-actions">
+                                <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="1">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="1">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+
+        </table>
+
+        <!-- Empty State (يظهر عند البحث بدون نتائج) -->
+        <div class="table-empty" id="tableEmpty" style="display: none;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>لا توجد نتائج</h3>
+            <p>لم نجد أي مستخدم يطابق معايير البحث</p>
+        </div>
+
+    </div>
+
+
+    <!-- ✅ Footer: Pagination + Selection Info -->
+    <div class="table-footer">
+
+        <div class="footer-info">
+            <span>عرض</span>
+            <strong id="visibleCount">4</strong>
+            <span>من أصل</span>
+            <strong id="totalCount">4</strong>
+            <span>مستخدم</span>
+        </div>
+
+        <div class="footer-pagination">
+            <button type="button" class="page-btn" id="prevPage" disabled>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="page-numbers" id="pageNumbers">
+                <button type="button" class="page-num active">1</button>
+            </div>
+
+            <button type="button" class="page-btn" id="nextPage" disabled>
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="footer-rows">
+            <select id="rowsPerPage" class="rows-select">
+                <option value="10">10 صفوف</option>
+                <option value="25">25 صف</option>
+                <option value="50">50 صف</option>
+                <option value="100">100 صف</option>
+            </select>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================
+     🔔 SELECTION BAR — يظهر عند تحديد صفوف
+============================================= -->
+<div class="selection-bar" id="selectionBar">
+    <div class="selection-info">
+        <i class="fa-solid fa-circle-check"></i>
+        <span>تم تحديد <strong id="selectedCount">0</strong> مستخدم</span>
+    </div>
+    <div class="selection-actions">
+        <button type="button" class="sel-btn danger" id="bulkDelete">
+            <i class="fa-solid fa-trash"></i>
+            <span>حذف المحدد</span>
+        </button>
+        <button type="button" class="sel-btn" id="clearSelection">
+            <i class="fa-solid fa-xmark"></i>
+            <span>إلغاء التحديد</span>
+        </button>
+    </div>
+</div>
+
+
+<!-- ============================================
+     🪟 DELETE CONFIRMATION MODAL
+============================================= -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+
+        <div class="modal-icon danger">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+
+        <h3>تأكيد الحذف</h3>
+        <p>
+            هل أنت متأكد من حذف هذا المستخدم؟
+            <br>
+            <strong>هذا الإجراء لا يمكن التراجع عنه.</strong>
+        </p>
+
+        <div class="modal-actions">
+            <button type="button" class="modal-btn cancel" id="cancelDelete">
+                <i class="fa-solid fa-xmark"></i>
+                إلغاء
+            </button>
+            <button type="button" class="modal-btn confirm" id="confirmDelete">
+                <i class="fa-solid fa-trash"></i>
+                نعم، احذف
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static 'core/js/users.js' %}"></script>
+{% endblock %}

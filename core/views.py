@@ -64,6 +64,7 @@ def register(request):
                 })
         
         role = Role(1,'admin')
+        role = Role(2,'judge')
         role.save()
         
         user = User.objects.create_user(
@@ -80,10 +81,10 @@ def register(request):
 
         user.save()
 
-        employee_profile = EmployeeProfile(user=user,role_id=1,full_name=full_name,phone=country_code+phone[1:])
+        employee_profile = EmployeeProfile(user=user,role_id=2,full_name=full_name,phone=country_code+phone[1:])
         employee_profile.save()
         
-        return redirect("login_view")
+        return redirect("login")
 
     return render(request, "core/register.html")
 
@@ -96,8 +97,17 @@ def users_list(request):
 
 
     employees = EmployeeProfile.objects.select_related("user").all()
+    active_users = employees.filter(user__is_active=True).count()
+    inactive_users = employees.filter(user__is_active=False).count()
+    admin_users = employees.filter(role_id = 1).count()
 
-    return render(request, "core/users.html", {"employee" : employees})
+    return render(request, "core/users.html", 
+                  {"employee" : employees , 
+                   'active_users' : active_users ,
+                   'inactive_users' : inactive_users ,
+                   'admin_users' : admin_users})
     
 
-# Create your views here.
+def cases(request):
+
+    return render(request, "core/cases.html")

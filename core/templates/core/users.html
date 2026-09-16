@@ -23,7 +23,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">إجمالي المستخدمين</span>
-            <strong class="stat-value">{{ total_users|default:"0" }}</strong>
+            <strong class="stat-value">{{employee|default:"0"|length }}</strong>
         </div>
         <div class="stat-trend up">
             <i class="fa-solid fa-arrow-trend-up"></i>
@@ -37,7 +37,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">نشطون</span>
-            <strong class="stat-value">{{ active_users|default:"0" }}</strong>
+                <strong class="stat-value">{{active_users|default:"0" }}</strong>
         </div>
         <div class="stat-trend up">
             <i class="fa-solid fa-circle-check"></i>
@@ -51,7 +51,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">المشرفون</span>
-            <strong class="stat-value">{{ admin_users|default:"0" }}</strong>
+            <strong class="stat-value">{{admin_users|default:"0" }}</strong>
         </div>
         <div class="stat-trend neutral">
             <i class="fa-solid fa-shield-halved"></i>
@@ -65,7 +65,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">غير نشطين</span>
-            <strong class="stat-value">{{ inactive_users|default:"0" }}</strong>
+            <strong class="stat-value">{{inactive_users|default:"0" }}</strong>
         </div>
         <div class="stat-trend down">
             <i class="fa-solid fa-circle-pause"></i>
@@ -223,7 +223,7 @@
                                 </div>
                                 <div class="user-details">
                                     <strong>{{em.full_name}}</strong>
-                                    <span>@{{em.full_name}}</span>
+                                    <span>{{em.user.username}}</span>
                                 </div>
                             </div>
                         </td>
@@ -245,7 +245,12 @@
                         <td>
                             <span class="badge role admin">
                                 <i class="fa-solid fa-user-shield"></i>
+                                {% if em.role_id == 1 %}
                                 مشرف
+                                {% elif em.role_id == 2 %}
+                                قاضي
+                                {% endif %}
+                                
                             </span>
                         </td>
 

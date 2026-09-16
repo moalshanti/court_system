@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080717">
+    <title>{% block title %}لوحة التحكم | نظام المحكمة الشرعية{% endblock %}</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/admin_dashboard.css' %}?v=1">
+</head>
+
+<body>
+
+    <!-- =========================
+         Layout Container
+    ========================== -->
+    <div class="admin-layout" id="adminLayout">
+
+
+        <!-- ============================================
+             ✅ SIDEBAR — القائمة الجانبية الثابتة
+        ============================================= -->
+        <aside class="sidebar" id="sidebar">
+
+            <!-- Sidebar Header (الشعار) -->
+            <div class="sidebar-header">
+                <a href="/" class="sidebar-logo">
+                    <div class="logo-icon">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h2>قضاء</h2>
+                        <span>نظام المحكمة الشرعية</span>
+                    </div>
+                </a>
+
+                <!-- زر تصغير Sidebar (للشاشات الكبيرة) -->
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="تصغير القائمة">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+
+            <!-- Sidebar Navigation -->
+            <nav class="sidebar-nav">
+
+                <div class="nav-section">
+                    <span class="nav-section-title">الرئيسية</span>
+
+                    <a href="#" class="nav-item active">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span>لوحة التحكم</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span>التقارير</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">الإدارة</span>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span>القضايا</span>
+                        <span class="nav-badge">24</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-gavel"></i>
+                        <span>الجلسات</span>
+                        <span class="nav-badge">8</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-users"></i>
+                        <span>الموكلون</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <span>الوثائق</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">النظام</span>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>المستخدمون</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>الإشعارات</span>
+                        <span class="nav-badge new">3</span>
+                    </a>
+
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>الإعدادات</span>
+                    </a>
+                </div>
+
+            </nav>
+
+
+            <!-- Sidebar Footer (معلومات المستخدم) -->
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <strong>أحمد محمد</strong>
+                        <span>مدير النظام</span>
+                    </div>
+                    <button class="user-menu-btn" aria-label="قائمة المستخدم">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- ============================================
+             ✅ MAIN AREA — منطقة المحتوى الرئيسية
+        ============================================= -->
+        <div class="main-wrapper">
+
+
+            <!-- ============================================
+                 ✅ HEADER — الشريط العلوي الثابت
+            ============================================= -->
+            <header class="top-header">
+
+                <!-- الجزء الأيسر: زر القائمة + عنوان الصفحة -->
+                <div class="header-left">
+
+                    <!-- زر فتح Sidebar للموبايل -->
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="فتح القائمة">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <!-- Breadcrumb / Page Title -->
+                    <div class="page-info">
+                        <h1>{% block page_title %}لوحة التحكم{% endblock %}</h1>
+                        <p>{% block page_subtitle %}مرحباً بك في نظام المحكمة الشرعية{% endblock %}</p>
+                    </div>
+
+                </div>
+
+
+                <!-- الجزء الأيمن: بحث + إشعارات + مستخدم -->
+                <div class="header-right">
+
+                    <!-- Search -->
+                    <div class="header-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input
+                            type="text"
+                            placeholder="بحث سريع..."
+                            aria-label="بحث"
+                        >
+                    </div>
+
+                    <!-- Notifications -->
+                    <button class="header-icon-btn" aria-label="الإشعارات">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <!-- Messages -->
+                    <button class="header-icon-btn" aria-label="الرسائل">
+                        <i class="fa-solid fa-envelope"></i>
+                    </button>
+
+                    <!-- User Menu -->
+                    <button class="header-user-btn" aria-label="قائمة المستخدم">
+                        <div class="header-user-avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ============================================
+                 ✅ CONTENT AREA — منطقة المحتوى (فارغة)
+            ============================================= -->
+            <main class="content-area" id="contentArea">
+
+                {% block content %}
+
+                    <!-- ========================================
+                         🎯 هذه المنطقة فاضية — ضع محتواك هنا
+                    ========================================= -->
+
+                    <!-- ✅ مثال: احذف هذا وأضف صفحتك -->
+                    <div class="empty-placeholder">
+                        <i class="fa-solid fa-inbox"></i>
+                        <h2>منطقة المحتوى</h2>
+                        <p>هنا يتم إضافة محتوى الصفحات المختلفة</p>
+                    </div>
+
+                {% endblock %}
+
+            </main>
+
+
+            <!-- ============================================
+                 ✅ FOOTER — تذييل الصفحة
+            ============================================= -->
+            <footer class="main-footer">
+                <span>© 2026 نظام المحكمة الشرعية — قضاء</span>
+                <span class="footer-sep">•</span>
+                <span>جميع الحقوق محفوظة</span>
+            </footer>
+
+        </div>
+
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    </div>
+
+
+    <!-- Admin JavaScript -->
+    <script src="{% static 'core/js/admin_dashboard.js' %}?v=1"></script>
+
+</body>
+</html>

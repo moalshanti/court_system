@@ -1,145 +1,158 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="theme-color" content="#080717">
     <title>المحكمة الشرعية | تسجيل الدخول</title>
 
-    <!-- Cairo -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link
-        rel="stylesheet"
-        href="{% static 'core/css/login.css' %}"
-    >
+    <!-- Login CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}?v=6">
 </head>
 
 <body>
 
-    <!-- Animated Background -->
+    <!-- =========================
+         Background Effects
+    ========================== -->
     <div class="background">
 
+        <!-- Glows -->
         <div class="glow glow-one"></div>
         <div class="glow glow-two"></div>
         <div class="glow glow-three"></div>
 
+        <!-- Grid -->
         <div class="grid"></div>
+
+        <!-- Floating Particles -->
+        <div class="particles">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span>
+        </div>
 
     </div>
 
 
-    <!-- Login Page -->
+    <!-- =========================
+         Main Container
+    ========================== -->
     <main class="login-page">
 
-
-        <!-- Left Information -->
+        <!-- =========================
+             Welcome Section
+        ========================== -->
         <section class="welcome-section">
 
-            <div class="welcome-content">
-
-                <div class="large-scale">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                </div>
-
-                <span class="welcome-small">
-                    نظام المحكمة الشرعية
-                </span>
-
-                <h1>
-                    أهلاً بك في
-                    <strong>قضاء</strong>
-                </h1>
-
-                <p>
-                    نظام إلكتروني متكامل لإدارة وأتمتة أعمال
-                    المحكمة الشرعية بطريقة آمنة ومنظمة.
-                </p>
-
-                <div class="welcome-line"></div>
-
-                <div class="features">
-
-                    <div class="feature">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>نظام آمن وموثوق</span>
-                    </div>
-
-                    <div class="feature">
-                        <i class="fa-solid fa-folder-open"></i>
-                        <span>إدارة إلكترونية للقضايا</span>
-                    </div>
-
-                    <div class="feature">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <span>متابعة وتنظيم الأعمال</span>
-                    </div>
-
-                </div>
-
+            <div class="welcome-badge">
+                <span class="dot"></span>
+                نظام معتمد
             </div>
+
+            <!-- Custom SVG Logo -->
+            <div class="welcome-icon">
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="scaleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                            <stop offset="100%" stop-color="#e0d8ff" stop-opacity="0.85"/>
+                        </linearGradient>
+                    </defs>
+
+                    <rect x="30" y="14" width="4" height="34" rx="2" fill="url(#scaleGrad)"/>
+                    <rect x="20" y="48" width="24" height="3" rx="1.5" fill="url(#scaleGrad)"/>
+                    <rect x="26" y="44" width="12" height="3" rx="1.5" fill="url(#scaleGrad)"/>
+                    <rect x="14" y="16" width="36" height="3" rx="1.5" fill="url(#scaleGrad)"/>
+
+                    <path d="M14 20 L10 28 Q10 32 14 32 Q18 32 18 28 L14 20 Z"
+                          fill="url(#scaleGrad)" opacity="0.95"/>
+                    <line x1="14" y1="17" x2="14" y2="20" stroke="url(#scaleGrad)" stroke-width="1.5"/>
+
+                    <path d="M50 20 L46 28 Q46 32 50 32 Q54 32 54 28 L50 20 Z"
+                          fill="url(#scaleGrad)" opacity="0.95"/>
+                    <line x1="50" y1="17" x2="50" y2="20" stroke="url(#scaleGrad)" stroke-width="1.5"/>
+
+                    <circle cx="32" cy="12" r="3" fill="url(#scaleGrad)"/>
+                </svg>
+            </div>
+
+            <h1>أهلاً بك في</h1>
+            <h2>قضاء</h2>
+
+            <p>
+                نظام إلكتروني متكامل لإدارة وأتمتة أعمال المحكمة الشرعية
+                بأعلى معايير الأمان والخصوصية.
+            </p>
+
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>نظام آمن وموثوق</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span>إدارة إلكترونية للقضايا</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>متابعة وتنظيم الأعمال</span>
+                </li>
+            </ul>
 
         </section>
 
 
-        <!-- Login Card -->
+        <!-- =========================
+             Login Section
+        ========================== -->
         <section class="login-section">
 
             <div class="login-card">
 
+                <!-- Card Header -->
+                <div class="card-header">
 
-                <!-- Logo -->
-                <div class="login-logo">
-
-                    <div class="logo-icon">
-                        <i class="fa-solid fa-scale-balanced"></i>
+                    <div class="card-icon">
+                        <i class="fa-solid fa-right-to-bracket"></i>
                     </div>
 
                     <div>
-                        <h2>قضاء</h2>
-                        <span>نظام المحكمة الشرعية</span>
+                        <h2>تسجيل الدخول</h2>
+                        <p>أدخل بياناتك للوصول إلى النظام</p>
                     </div>
 
                 </div>
 
 
-                <!-- Heading -->
-                <div class="login-heading">
-
-                    <span>مرحباً بعودتك</span>
-
-                    <h1>
-                        تسجيل الدخول
-                    </h1>
-
-                    <p>
-                        أدخل بياناتك للوصول إلى النظام
-                    </p>
-
-                </div>
+                <!-- Error Message -->
+                {% if error %}
+                    <div class="error-message">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>{{ error }}</span>
+                    </div>
+                {% endif %}
 
 
-                <!-- Form -->
+                <!-- Login Form -->
                 <form
                     method="POST"
-                    action="{% url "home" %}"
+                    action="{% url 'login' %}"
                     class="login-form"
                     id="loginForm"
+                    novalidate
                 >
 
                     {% csrf_token %}
@@ -147,15 +160,12 @@
 
                     <!-- Username -->
                     <div class="input-group">
-
                         <label for="username">
-                            اسم المستخدم
+                            <span>اسم المستخدم</span>
+                            <span class="required">*</span>
                         </label>
-
                         <div class="input-wrapper">
-
-                            <i class="fa-regular fa-user"></i>
-
+                            <i class="fa-solid fa-user"></i>
                             <input
                                 type="text"
                                 id="username"
@@ -164,23 +174,18 @@
                                 autocomplete="username"
                                 required
                             >
-
                         </div>
-
                     </div>
 
 
                     <!-- Password -->
                     <div class="input-group">
-
                         <label for="password">
-                            كلمة المرور
+                            <span>كلمة المرور</span>
+                            <span class="required">*</span>
                         </label>
-
                         <div class="input-wrapper">
-
                             <i class="fa-solid fa-lock"></i>
-
                             <input
                                 type="password"
                                 id="password"
@@ -189,18 +194,15 @@
                                 autocomplete="current-password"
                                 required
                             >
-
                             <button
                                 type="button"
                                 class="password-toggle"
-                                id="passwordToggle"
+                                data-target="password"
                                 aria-label="إظهار كلمة المرور"
                             >
-                                <i class="fa-regular fa-eye"></i>
+                                <i class="fa-solid fa-eye"></i>
                             </button>
-
                         </div>
-
                     </div>
 
 
@@ -208,18 +210,9 @@
                     <div class="form-options">
 
                         <label class="remember">
-
-                            <input
-                                type="checkbox"
-                                name="remember"
-                            >
-
+                            <input type="checkbox" name="remember">
                             <span class="checkmark"></span>
-
-                            <span>
-                                تذكرني
-                            </span>
-
+                            <span>تذكرني</span>
                         </label>
 
                         <a href="#" class="forgot">
@@ -229,51 +222,40 @@
                     </div>
 
 
-                    <!-- Login Button -->
-                    <button
-                        type="submit"
-                        class="login-button"
-                        id="loginButton"
-                    >
-
-                        <span class="button-text">
-                            تسجيل الدخول
-                        </span>
-
+                    <!-- Submit Button -->
+                    <button type="submit" class="login-button" id="loginButton">
+                        <span class="button-text">تسجيل الدخول</span>
                         <span class="button-loader">
                             <i class="fa-solid fa-circle-notch"></i>
                         </span>
-
                         <i class="fa-solid fa-arrow-left button-arrow"></i>
-
                     </button>
 
-                    <div class="register-link">
-                        <span>ليس لديك حساب؟</span>
 
-                        <a href="{% url 'register' %}">
-                            <i class="fa-solid fa-user-plus"></i>
-                            إنشاء حساب
-                        </a>
+                    <!-- Divider with Pulse Dot -->
+                    <div class="divider">
+                        <span class="divider-line"></span>
+                        <span class="divider-dot"></span>
+                        <span class="divider-line"></span>
                     </div>
 
+
+                    <!-- Register Button -->
+                    <div class="register-card">
+                        <a href="{% url 'register' %}" class="register-btn">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>ليس لديك حساب؟ إنشاء حساب</span>
+                        </a>
+                    </div>
 
                 </form>
 
 
                 <!-- Footer -->
                 <div class="login-footer">
-
-                    <span>
-                        © 2026 نظام المحكمة الشرعية
-                    </span>
-
+                    <span>© 2026 نظام المحكمة الشرعية</span>
                     <span class="footer-dot"></span>
-
-                    <span>
-                        جميع الحقوق محفوظة
-                    </span>
-
+                    <span>جميع الحقوق محفوظة</span>
                 </div>
 
             </div>
@@ -283,8 +265,7 @@
     </main>
 
 
-    <script src="{% static 'core/js/login.js' %}"></script>
+    <script src="{% static 'core/js/login.js' %}?v=6"></script>
 
 </body>
-
 </html>

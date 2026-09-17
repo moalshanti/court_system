@@ -75,7 +75,7 @@
                     <a href="{% url 'cases' %}" class="nav-item">
                         <i class="fa-solid fa-folder-open"></i>
                         <span>القضايا</span>
-                        <span class="nav-badge">24</span>
+                        <span class="nav-badge">{{cases_number}}</span>
                     </a>
 
                     <a href="#" class="nav-item">
@@ -84,7 +84,7 @@
                         <span class="nav-badge">8</span>
                     </a>
 
-                    <a href="#" class="nav-item">
+                    <a href="{% url 'clients' %}" class="nav-item">
                         <i class="fa-solid fa-users"></i>
                         <span>الموكلون</span>
                     </a>

@@ -13,23 +13,36 @@ class EmployeeProfile(models.Model):
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, db_column='role_id')
     full_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255 , null=True)
 
     def __str__(self):
         return self.full_name
 
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    phone = models.CharField(max_length=50)
-    address = models.TextField()
-    national_id = models.CharField(max_length=50)
+    plaintiff_name = models.CharField(max_length=255, null=True, blank=True)
+    plaintiff_email = models.CharField(max_length=255, null=True, blank=True)
+    plaintiff_gender = models.CharField(max_length=255, null=True, blank=True)
+    plaintiff_national_id = models.CharField(max_length=50, null=True, blank=True)
+    plaintiff_phone = models.CharField(max_length=20, null=True, blank=True)
+    plaintiff_address = models.TextField(null=True, blank=True)
+    defendant_name = models.CharField(max_length=255, null=True, blank=True)
+    defendant_email = models.CharField(max_length=255, null=True, blank=True)
+    defendant_gender = models.CharField(max_length=255, null=True, blank=True)
+    defendant_national_id = models.CharField(max_length=50, null=True, blank=True)
+    defendant_phone = models.CharField(max_length=20, null=True, blank=True)
+    defendant_address = models.TextField(null=True, blank=True)
+    case_type = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.plaintiff_name or f"Client {self.client_id}"
 
 class CourtCase(models.Model):
     case_id = models.AutoField(primary_key=True)
     case_number = models.CharField(max_length=100)
+    case_type = models.CharField(max_length=100,null=True)
+    case_subtype = models.CharField(max_length=100,null=True) 
+    case_title = models.CharField(max_length=100,null=True)
     case_date = models.DateField()
     status = models.CharField(max_length=50)
     # 'created_by' links to User

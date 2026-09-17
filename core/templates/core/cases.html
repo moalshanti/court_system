@@ -11,6 +11,7 @@
 {% endblock %}
 
 
+
 {% block content %}
 
 <!-- ============================================
@@ -24,7 +25,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">إجمالي القضايا</span>
-            <strong class="stat-value">0</strong>
+            <strong class="stat-value">{{cases_number}}</strong>
         </div>
         <div class="stat-trend up">
             <i class="fa-solid fa-arrow-trend-up"></i>
@@ -38,7 +39,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">قضايا مغلقة</span>
-            <strong class="stat-value">0</strong>
+            <strong class="stat-value">{{cases_close}}</strong>
         </div>
         <div class="stat-trend up">
             <i class="fa-solid fa-check"></i>
@@ -52,7 +53,7 @@
         </div>
         <div class="stat-info">
             <span class="stat-label">قيد النظر</span>
-            <strong class="stat-value">0</strong>
+            <strong class="stat-value">{{cases_open}}</strong>
         </div>
         <div class="stat-trend neutral">
             <i class="fa-solid fa-clock"></i>
@@ -197,243 +198,66 @@
             </thead>
 
             <tbody id="casesTableBody">
-
-                <tr data-case-id="1" data-number="CASE-001" data-title="قضية خلع" data-date="2026-09-15">
-                    <td class="th-check">
-                        <label class="table-checkbox">
-                            <input type="checkbox" class="row-check">
-                            <span class="checkmark-box"></span>
-                        </label>
-                    </td>
-                    <td><div class="case-number-cell"><span class="case-number">CASE-001</span></div></td>
-                    <td>
-                        <div class="case-title-cell">
-                            <strong>قضية خلع</strong>
-                            <span class="case-desc">طلب خلع بناءً على الضرر</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge type family">
-                            <i class="fa-solid fa-tag"></i>
-                            أحوال شخصية
-                        </span>
-                    </td>
-                    <td>
-                        <div class="client-cell">
-                            <div class="mini-avatar">أ</div>
-                            <span>أحمد محمد</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="judge-cell">
-                            <i class="fa-solid fa-gavel"></i>
-                            <span>قاضي محمد</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge status active">
-                            <span class="dot"></span>
-                            قيد النظر
-                        </span>
-                    </td>
-                    <td>
-                        <div class="cell-date">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>2026/09/15</span>
-                        </div>
-                    </td>
-                    <td class="th-actions">
-                        <div class="row-actions">
-                            <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="1">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="1">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="1">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr data-case-id="2" data-number="CASE-002" data-title="قضية ميراث" data-date="2026-09-14">
-                    <td class="th-check">
-                        <label class="table-checkbox">
-                            <input type="checkbox" class="row-check">
-                            <span class="checkmark-box"></span>
-                        </label>
-                    </td>
-                    <td><div class="case-number-cell"><span class="case-number">CASE-002</span></div></td>
-                    <td>
-                        <div class="case-title-cell">
-                            <strong>قضية ميراث</strong>
-                            <span class="case-desc">توزيع تركة والد</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge type inheritance">
-                            <i class="fa-solid fa-tag"></i>
-                            ميراث
-                        </span>
-                    </td>
-                    <td>
-                        <div class="client-cell">
-                            <div class="mini-avatar">س</div>
-                            <span>سارة أحمد</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="judge-cell">
-                            <i class="fa-solid fa-gavel"></i>
-                            <span>قاضي علي</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge status closed">
-                            <span class="dot"></span>
-                            مغلقة
-                        </span>
-                    </td>
-                    <td>
-                        <div class="cell-date">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>2026/09/14</span>
-                        </div>
-                    </td>
-                    <td class="th-actions">
-                        <div class="row-actions">
-                            <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="2">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="2">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="2">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr data-case-id="3" data-number="CASE-003" data-title="قضية طلاق" data-date="2026-09-12">
-                    <td class="th-check">
-                        <label class="table-checkbox">
-                            <input type="checkbox" class="row-check">
-                            <span class="checkmark-box"></span>
-                        </label>
-                    </td>
-                    <td><div class="case-number-cell"><span class="case-number">CASE-003</span></div></td>
-                    <td>
-                        <div class="case-title-cell">
-                            <strong>قضية طلاق</strong>
-                            <span class="case-desc">طلب طلاق بالتراضي</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge type divorce">
-                            <i class="fa-solid fa-tag"></i>
-                            طلاق
-                        </span>
-                    </td>
-                    <td>
-                        <div class="client-cell">
-                            <div class="mini-avatar">م</div>
-                            <span>محمد علي</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="judge-cell">
-                            <i class="fa-solid fa-gavel"></i>
-                            <span>قاضي حسن</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge status postponed">
-                            <span class="dot"></span>
-                            مؤجلة
-                        </span>
-                    </td>
-                    <td>
-                        <div class="cell-date">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>2026/09/12</span>
-                        </div>
-                    </td>
-                    <td class="th-actions">
-                        <div class="row-actions">
-                            <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="3">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="3">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="3">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr data-case-id="4" data-number="CASE-004" data-title="قضية حضانة" data-date="2026-09-10">
-                    <td class="th-check">
-                        <label class="table-checkbox">
-                            <input type="checkbox" class="row-check">
-                            <span class="checkmark-box"></span>
-                        </label>
-                    </td>
-                    <td><div class="case-number-cell"><span class="case-number">CASE-004</span></div></td>
-                    <td>
-                        <div class="case-title-cell">
-                            <strong>قضية حضانة</strong>
-                            <span class="case-desc">طلب حضانة أطفال</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge type custody">
-                            <i class="fa-solid fa-tag"></i>
-                            حضانة
-                        </span>
-                    </td>
-                    <td>
-                        <div class="client-cell">
-                            <div class="mini-avatar">ف</div>
-                            <span>فاطمة حسن</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="judge-cell">
-                            <i class="fa-solid fa-gavel"></i>
-                            <span>قاضي محمود</span>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge status appealed">
-                            <span class="dot"></span>
-                            استئناف
-                        </span>
-                    </td>
-                    <td>
-                        <div class="cell-date">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>2026/09/10</span>
-                        </div>
-                    </td>
-                    <td class="th-actions">
-                        <div class="row-actions">
-                            <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="4">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="4">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="4">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
+                {% for case in case_client %}
+                    <tr data-case-id="1" data-number="{{case.case.case_number}}" data-title="{{case.case.case_subtype}}" data-date="{{ case.case.case_date|date:'d-m-Y'}}">
+                        <td class="th-check">
+                            <label class="table-checkbox">
+                                <input type="checkbox" class="row-check">
+                                <span class="checkmark-box"></span>
+                            </label>
+                        </td>
+                        <td><div class="case-number-cell"><span class="case-number">{{case.case.case_number}}</span></div></td>
+                        <td>
+                            <div class="case-title-cell">
+                                <strong>{{case.case.case_subtype}}</strong>
+                                <span class="case-desc">{{case.case.case_title}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge type family">
+                                <i class="fa-solid fa-tag"></i>
+                                {{case.case.case_type}} 
+                            </span>
+                        </td>
+                        <td>
+                            <div class="client-cell">
+                                <div class="mini-avatar">أ</div>
+                                <span>{{case.client.plaintiff_name}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="judge-cell">
+                                <i class="fa-solid fa-gavel"></i>
+                                <span>{{case.case.created_by.full_name}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge status active">
+                                <span class="dot"></span>
+                                {{case.case.status}}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="cell-date">
+                                <i class="fa-regular fa-calendar"></i>
+                                <span>{{ case.case.case_date|date:'d-m-Y'}}</span>
+                            </div>
+                        </td>
+                        <td class="th-actions">
+                            <div class="row-actions">
+                                <button type="button" class="action-btn view" title="عرض" data-action="view" data-id="1">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                                <button type="button" class="action-btn edit" title="تعديل" data-action="edit" data-id="1">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button type="button" class="action-btn delete" title="حذف" data-action="delete" data-id="1">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
 
         </table>
